@@ -54,7 +54,7 @@
                                     <label for="nama_product">Nama Product</label>
                                     <input type="text" class="form-control @error('nama_product') is-invalid @enderror"
                                         name="nama_product" id="nama_product" aria-describedby="nama_productHelp"
-                                        placeholder="Enter nama product" value="{{ old('nama_product',$data->kategori) }}" required>
+                                        placeholder="Enter nama product" value="{{ old('nama_product',$data->nama_product) }}" required>
                                     @error('nama_product')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
