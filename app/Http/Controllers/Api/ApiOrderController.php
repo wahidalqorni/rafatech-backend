@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ApiOrderController extends Controller
@@ -59,7 +60,10 @@ class ApiOrderController extends Controller
     public function searchOrder(Request $request)
     {
         try {
-            $data = Order::where('kode_order', $request->kode_order)->first();
+            $data = DB::table('orders')
+            ->select('orders.*','products.nama_product','products.harga as harga_satuan','products.kategori')
+            ->leftJoin('products','products.id','orders.product_id')
+            ->first();
             if ($data) {
                 // distribusikan datanya
                 return response()->json([
