@@ -23,3 +23,4 @@ Route::get('/detail-product/{id}', [App\Http\Controllers\Api\ApiProductControlle
 Route::get('/search-product', [App\Http\Controllers\Api\ApiProductController::class, 'searchProduct']);
 
 Route::post('/post-order', [App\Http\Controllers\Api\ApiOrderController::class, 'postOrder']);
+Route::post('/search-order', [App\Http\Controllers\Api\ApiOrderController::class, 'searchOrder']);

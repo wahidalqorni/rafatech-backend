@@ -17,7 +17,7 @@ class ApiOrderController extends Controller
         // tampung nilai product_id yg diinput
         $product_id = $request->product_id;
         // ambil data product berdasarkan product_id yg diinputkan
-        $product = Product::where('id', $product_id)->where('status','Publish')->first();
+        $product = Product::where('id', $product_id)->where('status', 'Publish')->first();
 
         try {
             // jika data product tidak ditemukan
@@ -52,6 +52,34 @@ class ApiOrderController extends Controller
                 'success' => false,
                 'message' => "Failed : " . $error->getMessage(),
                 'pesanan'    => null
+            ], 500);
+        }
+    }
+
+    public function searchOrder(Request $request)
+    {
+        try {
+            $data = Order::where('kode_order', $request->kode_order)->first();
+            if ($data) {
+                // distribusikan datanya
+                return response()->json([
+                    'success' => true,
+                    'message' => "Success",
+                    'order'    => $data
+                ], 200);
+            } else {
+                // distribusikan datanya
+                return response()->json([
+                    'success' => false,
+                    'message' => "Not Found",
+                    'order'    => $data
+                ], 404);
+            }
+        } catch (Exception $error) {
+            return response()->json([
+                'success' => false,
+                'message' => "Failed : " . $error->getMessage(),
+                'product'    => null
             ], 500);
         }
     }
