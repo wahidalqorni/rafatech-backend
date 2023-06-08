@@ -63,6 +63,7 @@ class ApiOrderController extends Controller
             $data = DB::table('orders')
             ->select('orders.*','products.nama_product','products.harga as harga_satuan','products.kategori')
             ->leftJoin('products','products.id','orders.product_id')
+            ->where('kode_order', $request->kode_order)
             ->first();
             if ($data) {
                 // distribusikan datanya
