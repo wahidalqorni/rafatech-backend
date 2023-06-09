@@ -20,7 +20,6 @@ class UserController extends Controller
         return view('backend.users.add');
     }
 
-
     public function store(Request $request)
     {
 
